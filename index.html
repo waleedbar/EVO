@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta property="og:title" content="EVO | Italian Precision Engineering" />
+  <meta property="og:description" content="Advanced control components designed for durability, safety, and long-term performance. Proudly Made in Italy since 2008." />
+  <meta property="og:type" content="website" />
+  <title>EVO | Italian Precision Engineering</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --background: #ffffff;
+      --foreground: #1a1a1a;
+      --card: #f9f9f9;
+      --primary: #009246;
+      --primary-foreground: #ffffff;
+      --secondary: #CE2B37;
+      --secondary-foreground: #ffffff;
+      --muted: #e6e6e6;
+      --muted-foreground: #666666;
+      --accent: #f0f0f0;
+      --accent-foreground: #1a1a1a;
+      --border: #d9d9d9;
+      --radius: 0.25rem;
+      --font-sans: 'Inter', sans-serif;
+      --font-heading: 'Montserrat', sans-serif;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--background);
+      color: var(--foreground);
+      line-height: 1.6;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    ::selection { background: rgba(0,146,70,0.2); }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      z-index: 50;
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+
+    .nav-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-logo-text {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 1.875rem;
+      letter-spacing: -0.05em;
+      color: var(--foreground);
+    }
+
+    .nav-logo-dot { color: var(--primary); }
+
+    .nav-tagline {
+      display: none;
+      flex-direction: column;
+      margin-left: 0.5rem;
+      border-left: 2px solid rgba(0,146,70,0.3);
+      padding-left: 0.5rem;
+    }
+
+    @media (min-width: 768px) { .nav-tagline { display: flex; } }
+
+    .nav-tagline span {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--muted-foreground);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      line-height: 1.2;
+    }
+
+    .nav-links {
+      display: none;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    @media (min-width: 768px) { .nav-links { display: flex; } }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--foreground);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--primary); }
+
+    .nav-cta {
+      background: var(--primary);
+      color: var(--primary-foreground);
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: 0.875rem;
+      padding: 0.625rem 1.5rem;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+      border-radius: 0;
+    }
+
+    .nav-cta:hover { background: rgba(0,146,70,0.88); }
+    /* ===== HAMBURGER MOBILE ===== */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      z-index: 100;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: var(--foreground);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      transform-origin: center;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    @media (max-width: 767px) {
+      .hamburger { display: flex; }
+
+      .nav-links {
+        display: flex !important;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 75%;
+        max-width: 300px;
+        height: 100vh;
+        background: #fff;
+        box-shadow: -4px 0 20px rgba(0,0,0,0.12);
+        padding: 100px 2rem 2rem;
+        gap: 0;
+        transition: right 0.3s ease;
+        z-index: 90;
+        list-style: none;
+        overflow-y: auto;
+      }
+
+      .nav-links.open {
+        right: 0;
+      }
+
+      .nav-links li {
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 1rem 0;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--foreground);
+      }
+
+      .nav-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.4);
+        z-index: 80;
+      }
+
+      .nav-overlay.open {
+        display: block;
+      }
+    }
+
+
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      padding-top: 80px;
+      overflow: hidden;
+      background: var(--foreground);
+      color: var(--background);
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-bg-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 50%, transparent 100%);
+      z-index: 1;
+    }
+
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0.6;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem;
+      width: 100%;
+    }
+
+    .hero-inner { max-width: 48rem; }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      padding: 0.25rem 0.75rem;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .hero-badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--primary);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%,100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .hero-badge span {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .hero h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+      color: #fff;
+    }
+
+    .hero-gradient-text {
+      background: linear-gradient(to right, var(--primary), rgba(0,146,70,0.7));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-desc {
+      border-left: 4px solid var(--primary);
+      padding-left: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-desc-en {
+      font-weight: 500;
+      font-size: 1.125rem;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-desc-it {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.6);
+      font-style: italic;
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-features { margin-top: 1.5rem; }
+
+    .hero-feature { margin-bottom: 1rem; }
+
+    .hero-feature-en {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .hero-feature-it {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5);
+      font-style: italic;
+      font-weight: 300;
+      margin-top: 0.25rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    @media (min-width: 640px) { .hero-buttons { flex-direction: row; } }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.125rem;
+      padding: 0 2rem;
+      height: 3.5rem;
+      border: none;
+      border-radius: 0;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .btn-primary:hover { background: rgba(0,146,70,0.88); }
+
+    .btn-primary svg { width: 20px; height: 20px; }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.125rem;
+      padding: 0 2rem;
+      height: 3.5rem;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 0;
+      cursor: pointer;
+      text-decoration: none;
+      backdrop-filter: blur(4px);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn-outline:hover { background: #fff; color: #000; }
+
+    /* ===== ABOUT ===== */
+    .about {
+      padding: 6rem 1.5rem;
+      background: var(--background);
+    }
+
+    .container { max-width: 1280px; margin: 0 auto; }
+
+    .about-grid {
+      display: grid;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    @media (min-width: 768px) { .about-grid { grid-template-columns: 1fr 1fr; } }
+
+    .about-img-wrap {
+      position: relative;
+    }
+
+    .about-img-bg {
+      position: absolute;
+      inset: -1rem;
+      background: var(--accent);
+      transform: rotate(-2deg);
+      z-index: 0;
+    }
+
+    .about-img-wrap img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: auto;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .about-year-card {
+      position: absolute;
+      bottom: -1.5rem;
+      right: -1.5rem;
+      z-index: 2;
+      background: #fff;
+      padding: 1.5rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+      max-width: 180px;
+      border-top: 4px solid var(--primary);
+    }
+
+    .about-year-card .year {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--foreground);
+      line-height: 1;
+    }
+
+    .about-year-card .year-label {
+      font-size: 0.75rem;
+      color: var(--muted-foreground);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 0.25rem;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: 700;
+      color: var(--foreground);
+      margin-bottom: 2rem;
+      line-height: 1.2;
+    }
+
+    .about-text-block { margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+    .about-text-block:last-child { border-bottom: none; }
+    .about-text-en { font-weight: 500; color: var(--foreground); margin-bottom: 0.25rem; }
+    .about-text-it { font-size: 0.875rem; font-style: italic; font-weight: 300; color: var(--muted-foreground); }
+
+    /* ===== PRODUCTS ===== */
+    .products {
+      padding: 6rem 1.5rem;
+      background: rgba(240,240,240,0.3);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .products-header {
+      text-align: center;
+      max-width: 48rem;
+      margin: 0 auto 4rem;
+    }
+
+    .products-header .section-title { margin-bottom: 1rem; }
+
+    .products-header p { font-size: 1.125rem; color: var(--muted-foreground); }
+    .products-header .it { font-size: 0.875rem; font-style: italic; font-weight: 300; color: var(--muted-foreground); margin-top: 0.25rem; }
+
+    .products-grid {
+      display: grid;
+      gap: 3rem;
+    }
+
+    @media (min-width: 768px) { .products-grid { grid-template-columns: 1fr 1fr; } }
+
+    .product-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      transition: box-shadow 0.3s;
+      overflow: hidden;
+    }
+
+    .product-card:hover { box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
+
+    .product-img-wrap {
+      position: relative;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      background: var(--accent);
+    }
+
+    .product-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      mix-blend-mode: multiply;
+      transition: transform 0.7s;
+    }
+
+    .product-card:hover .product-img-wrap img { transform: scale(1.05); }
+
+    .product-badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 0.25rem 0.75rem;
+      color: #fff;
+    }
+
+    .badge-primary { background: var(--primary); }
+    .badge-secondary { background: var(--secondary); }
+
+    .product-body { padding: 2rem; }
+
+    .product-title {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--foreground);
+    }
+
+    .product-title svg {
+      color: var(--primary);
+      opacity: 0;
+      transform: translateX(-1rem);
+      transition: all 0.3s;
+    }
+
+    .product-card:hover .product-title svg {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .product-item { margin-bottom: 1rem; }
+    .product-item-en { font-weight: 500; color: var(--foreground); font-size: 0.9375rem; }
+    .product-item-it { font-size: 0.8125rem; font-style: italic; font-weight: 300; color: var(--muted-foreground); }
+
+    .product-item + .product-item { padding-top: 1rem; border-top: 1px solid rgba(0,0,0,0.07); }
+
+    /* ===== VISION/MISSION ===== */
+    .vision {
+      padding: 6rem 1.5rem;
+      background: var(--foreground);
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .vision-blob1 {
+      position: absolute;
+      top: 0; right: 0;
+      width: 800px; height: 800px;
+      background: rgba(0,146,70,0.05);
+      border-radius: 50%;
+      filter: blur(100px);
+      transform: translate(50%,-50%);
+      pointer-events: none;
+    }
+
+    .vision-blob2 {
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 600px; height: 600px;
+      background: rgba(206,43,55,0.05);
+      border-radius: 50%;
+      filter: blur(80px);
+      transform: translate(-50%,50%);
+      pointer-events: none;
+    }
+
+    .vision-grid {
+      display: grid;
+      gap: 4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (min-width: 768px) { .vision-grid { grid-template-columns: 1fr 1fr; } }
+
+    .vision-heading {
+      font-family: var(--font-heading);
+      font-size: 1.875rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .vision-heading-line { display: inline-block; width: 2rem; height: 2px; }
+    .line-primary { background: var(--primary); }
+    .line-secondary { background: var(--secondary); }
+
+    .vision-body {
+      padding-left: 3rem;
+      border-left: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .vision-body .en {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #fff;
+      line-height: 1.35;
+      margin-bottom: 0.75rem;
+    }
+
+    .vision-body .it {
+      font-size: 0.875rem;
+      font-style: italic;
+      font-weight: 300;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* ===== WHY EVO ===== */
+    .why {
+      padding: 6rem 1.5rem;
+      background: var(--background);
+    }
+
+    .why-grid {
+      display: grid;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    @media (min-width: 768px) { .why-grid { grid-template-columns: 1fr 1fr; } }
+
+    .why-features { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .why-feature { display: flex; gap: 1rem; align-items: flex-start; }
+
+    .why-check {
+      flex-shrink: 0;
+      width: 24px; height: 24px;
+      color: var(--primary);
+    }
+
+    .why-feature-en { font-size: 1.125rem; font-weight: 700; color: var(--foreground); }
+    .why-feature-it { font-size: 0.875rem; font-style: italic; font-weight: 300; color: var(--muted-foreground); margin-top: 0.25rem; }
+
+    .why-img-wrap {
+      position: relative;
+      height: 600px;
+    }
+
+    .why-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 2px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+      filter: grayscale(1);
+      transition: filter 0.7s;
+    }
+
+    .why-img-wrap:hover img { filter: grayscale(0); }
+
+    .why-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,146,70,0.1);
+      mix-blend-mode: multiply;
+      pointer-events: none;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--foreground);
+      color: #fff;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: 4rem 1.5rem 2rem;
+    }
+
+    .footer-top {
+      display: grid;
+      gap: 2rem;
+      margin-bottom: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    @media (min-width: 768px) { .footer-top { grid-template-columns: 2fr 1fr 1fr 1.5fr; } }
+
+    .footer-logo {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 1.875rem;
+      letter-spacing: -0.05em;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+
+    .footer-logo span { color: var(--primary); }
+
+    .footer-desc { font-size: 0.9375rem; color: rgba(255,255,255,0.6); max-width: 24rem; line-height: 1.7; }
+
+    .footer-col h4 {
+      font-weight: 700;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 1rem;
+    }
+
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 0.5rem; }
+    .footer-col ul li a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul li a:hover { color: var(--primary); }
+
+    .footer-bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: center;
+      text-align: center;
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.4);
+    }
+
+    @media (min-width: 768px) {
+      .footer-bottom { flex-direction: row; justify-content: space-between; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MOBILE OVERLAY -->
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <img src="LOGO.png" alt="EVO Logo" style="height:70px;width:auto;object-fit:contain;" />
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#vision">Vision</a></li>
+        <li><a href="#why-evo">Why EVO</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-bg">
+        <div class="hero-bg-overlay"></div>
+        <img src="hero-bg.png" alt="Industrial Engineering" />
+      </div>
+      <div class="hero-content">
+        <div class="hero-inner">
+          <div class="hero-badge">
+            <div class="hero-badge-dot"></div>
+            <span>Est. 2008 • Brescia, Italy</span>
+          </div>
+          <h1>
+            Italian Precision.<br>
+            <span class="hero-gradient-text">Engineered to Perform.</span>
+          </h1>
+          <div class="hero-desc">
+            <p class="hero-desc-en">Advanced control components designed for durability, safety, and long-term performance.</p>
+            <p class="hero-desc-it">Componenti di controllo avanzati progettati per durata, sicurezza e prestazioni a lungo termine.</p>
+            <div class="hero-features">
+              <div class="hero-feature">
+                <p class="hero-feature-en">Italian engineering excellence. Industrial-grade materials with a long operational lifespan.</p>
+                <p class="hero-feature-it">Eccellenza ingegneristica italiana. Materiali di grado industriale con una lunga vita operativa.</p>
+              </div>
+              <div class="hero-feature">
+                <p class="hero-feature-en">Trusted by contractors and distributors. Designed for residential &amp; commercial systems.</p>
+                <p class="hero-feature-it">Scelto da appaltatori e distributori. Progettato per sistemi residenziali e commerciali.</p>
+              </div>
+            </div>
+          </div>
+          <div class="hero-buttons">
+            <a href="#products" class="btn-primary">
+              Explore Products
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
+            <a href="#contact" class="btn-outline">Contact Us</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-img-wrap">
+            <div class="about-img-bg"></div>
+            <img src="about-factory.png" alt="EVO Manufacturing Facility" />
+            <div class="about-year-card">
+              <div class="year">2008</div>
+              <div class="year-label">Year Founded</div>
+            </div>
+          </div>
+          <div>
+            <p class="section-label">The EVO Story</p>
+            <h2 class="section-title">Built for demanding environments.</h2>
+            <div class="about-text-block">
+              <p class="about-text-en">Founded in 2008 in Brescia, Italy, located in one of Italy's leading industrial engineering regions.</p>
+              <p class="about-text-it">Fondata nel 2008 a Brescia, Italia, situata in una delle principali regioni di ingegneria industriale italiane.</p>
+            </div>
+            <div class="about-text-block">
+              <p class="about-text-en">We hold a deep commitment to precision manufacturing, focusing on performance under extreme pressure and high temperature.</p>
+              <p class="about-text-it">Manteniamo un profondo impegno nella produzione di precisione, concentrandoci sulle prestazioni sotto pressione estrema e alte temperature.</p>
+            </div>
+            <div class="about-text-block">
+              <p class="about-text-en">Every component is engineered to be premium, reliable, and fundamentally trustworthy for global B2B markets.</p>
+              <p class="about-text-it">Ogni componente è progettato per essere premium, affidabile e fondamentalmente sicuro per i mercati B2B globali.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section class="products" id="products">
+      <div class="container">
+        <div class="products-header">
+          <p class="section-label">Our Solutions</p>
+          <h2 class="section-title">Precision-crafted for demanding systems.</h2>
+          <p>Engineered for reliability. Built to withstand pressure.</p>
+          <p class="it">Progettato per l'affidabilità. Costruito per resistere alla pressione.</p>
+        </div>
+        <div class="products-grid">
+          <!-- Product 1 -->
+          <div class="product-card">
+            <div class="product-img-wrap">
+              <img src="product-float-valve.png" alt="Float Valve Rods" />
+              <div class="product-badge badge-primary">Water Level Control</div>
+            </div>
+            <div class="product-body">
+              <div class="product-title">
+                Float Valve Rods
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </div>
+              <div class="product-item">
+                <p class="product-item-en">Precision level control with superior corrosion resistance for stable water regulation.</p>
+                <p class="product-item-it">Controllo di precisione del livello con superiore resistenza alla corrosione per una regolazione stabile dell'acqua.</p>
+              </div>
+              <div class="product-item">
+                <p class="product-item-en">Manufactured from heavy-duty materials ensuring an exceptionally long service life.</p>
+                <p class="product-item-it">Prodotto con materiali per impieghi gravosi che garantiscono una durata di servizio eccezionalmente lunga.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Product 2 -->
+          <div class="product-card">
+            <div class="product-img-wrap">
+              <img src="product-heater-rod.png" alt="Water Heater Rods" />
+              <div class="product-badge badge-secondary">Thermal Systems</div>
+            </div>
+            <div class="product-body">
+              <div class="product-title">
+                Water Heater Rods
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#CE2B37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </div>
+              <div class="product-item">
+                <p class="product-item-en">Exceptional high temperature resistance providing ultimate safety performance.</p>
+                <p class="product-item-it">Eccezionale resistenza alle alte temperature che offre le massime prestazioni di sicurezza.</p>
+              </div>
+              <div class="product-item">
+                <p class="product-item-en">Engineered with structural durability specifically designed for continuous use.</p>
+                <p class="product-item-it">Progettato con durata strutturale specificamente ideata per l'uso continuo.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VISION / MISSION -->
+    <section class="vision" id="vision">
+      <div class="vision-blob1"></div>
+      <div class="vision-blob2"></div>
+      <div class="container">
+        <div class="vision-grid">
+          <div>
+            <h2 class="vision-heading">
+              <span class="vision-heading-line line-primary"></span>
+              Our Vision
+            </h2>
+            <div class="vision-body">
+              <p class="en">To become a globally recognized Italian manufacturer of high-quality water control components.</p>
+              <p class="it">Diventare un produttore italiano riconosciuto a livello globale di componenti di controllo dell'acqua di alta qualità.</p>
+            </div>
+          </div>
+          <div>
+            <h2 class="vision-heading">
+              <span class="vision-heading-line line-secondary"></span>
+              Our Mission
+            </h2>
+            <div class="vision-body">
+              <p class="en">Deliver reliable, durable, and precision-engineered solutions that enhance system performance and safety.</p>
+              <p class="it">Fornire soluzioni affidabili, durevoli e ingegnerizzate con precisione che migliorano le prestazioni e la sicurezza del sistema.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY EVO -->
+    <section class="why" id="why-evo">
+      <div class="container">
+        <div class="why-grid">
+          <div>
+            <p class="section-label">The EVO Advantage</p>
+            <h2 class="section-title">Why Choose EVO?</h2>
+            <div class="why-features">
+              <div class="why-feature">
+                <svg class="why-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                <div>
+                  <p class="why-feature-en">100% Italian Engineering Standards</p>
+                  <p class="why-feature-it">Standard Ingegneristici 100% Italiani</p>
+                </div>
+              </div>
+              <div class="why-feature">
+                <svg class="why-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                <div>
+                  <p class="why-feature-en">Durable Industrial Materials</p>
+                  <p class="why-feature-it">Materiali Industriali Durevoli</p>
+                </div>
+              </div>
+              <div class="why-feature">
+                <svg class="why-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                <div>
+                  <p class="why-feature-en">Rigorous Quality Control &amp; Testing</p>
+                  <p class="why-feature-it">Controllo Qualità e Test Rigorosi</p>
+                </div>
+              </div>
+              <div class="why-feature">
+                <svg class="why-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                <div>
+                  <p class="why-feature-en">Designed for Long-Term Performance</p>
+                  <p class="why-feature-it">Progettato per Prestazioni a Lungo Termine</p>
+                </div>
+              </div>
+              <div class="why-feature">
+                <svg class="why-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                <div>
+                  <p class="why-feature-en">Trusted by Global Professionals</p>
+                  <p class="why-feature-it">Scelto dai Professionisti Globali</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="why-img-wrap">
+            <img src="quality-contro.png" alt="Quality Control Testing" />
+            <div class="why-img-overlay"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div style="display:inline-flex;flex-direction:column;align-items:flex-start;gap:5px;margin-bottom:1rem;">
+            <img src="LOGO.png" alt="EVO Logo" style="height:55px;width:auto;max-width:160px;object-fit:contain;object-position:left;" />
+            <div style="display:flex;height:3px;width:100%;border-radius:1px;overflow:hidden;">
+              <div style="flex:1;background:#009246;"></div>
+              <div style="flex:1;background:#ffffff;opacity:0.9;"></div>
+              <div style="flex:1;background:#CE2B37;"></div>
+            </div>
+            <span style="font-family:'Montserrat',sans-serif;font-size:9px;font-style:italic;color:rgba(255,255,255,0.6);letter-spacing:0.05em;">Made in Italy since 2008</span>
+          </div>
+          <p class="footer-desc">Italian precision engineering. Advanced control components designed for durability, safety, and long-term performance in demanding industrial environments.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="#about">About EVO</a></li>
+            <li><a href="#products">Our Products</a></li>
+            <li><a href="#vision">Vision &amp; Mission</a></li>
+            <li><a href="#why-evo">Quality Standards</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+            <li><a href="#">ISO Certifications</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li style="display:flex;align-items:flex-start;gap:0.5rem;color:rgba(255,255,255,0.6);font-size:0.875rem;line-height:1.6;">
+              <svg style="flex-shrink:0;margin-top:3px;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#009246" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              <span>Via Industriale 42<br>25100 Brescia (BS)<br>Italy</span>
+            </li>
+            <li style="display:flex;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.6);font-size:0.875rem;margin-top:0.75rem;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#009246" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              <span>info@evovalves.com</span>
+            </li>
+            <li style="margin-top:1rem;border-left:2px solid #009246;padding-left:0.75rem;">
+              <p style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:rgba(255,255,255,0.9);">Proudly Made in Italy</p>
+              <p style="font-size:0.65rem;color:rgba(255,255,255,0.5);margin-top:0.2rem;">Since 2008</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© <span id="year"></span> EVO Industrial Components S.p.A. All rights reserved.</p>
+        <p>Brescia, Italy</p>
+      </div>
+    </div>
+  </footer>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Hamburger menu
+    const hamburger = document.getElementById("hamburger");
+    const navLinks  = document.getElementById("navLinks");
+    const overlay   = document.getElementById("navOverlay");
+
+    function closeMenu() {
+      hamburger.classList.remove("active");
+      navLinks.classList.remove("open");
+      overlay.classList.remove("open");
+      document.body.style.overflow = "";
+    }
+
+    hamburger.addEventListener("click", function() {
+      const isOpen = navLinks.classList.contains("open");
+      if (isOpen) { closeMenu(); }
+      else {
+        hamburger.classList.add("active");
+        navLinks.classList.add("open");
+        overlay.classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+    });
+
+    overlay.addEventListener("click", closeMenu);
+
+    // Smooth scroll + close menu on link click
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener("click", function(e) {
+        e.preventDefault();
+        closeMenu();
+        const target = document.querySelector(this.getAttribute("href"));
+        if (target) { target.scrollIntoView({ behavior: "smooth" }); }
+      });
+    });
+  </script>
+</body>
+</html>

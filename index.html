@@ -99,23 +99,16 @@
       line-height: 1.2;
     }
 
+    /* ===== NAV LINKS — Desktop ===== */
     .nav-links {
       display: none;
       gap: 2rem;
       list-style: none;
     }
 
-    @media (min-width: 768px) { .nav-links { display: flex; } }
-
-    @media (max-width: 767px) {
+    @media (min-width: 768px) {
       .nav-links {
-        display: flex !important;
-        visibility: hidden;
-        pointer-events: none;
-      }
-      .nav-links.open {
-        visibility: visible;
-        pointer-events: all;
+        display: flex;
       }
     }
 
@@ -137,27 +130,28 @@
       font-size: 0.875rem;
       padding: 0.625rem 1.5rem;
       border: none;
-      border-radius: var(--radius);
+      border-radius: 0;
       cursor: pointer;
       text-decoration: none;
       transition: background 0.2s;
-      border-radius: 0;
     }
 
     .nav-cta:hover { background: rgba(0,146,70,0.88); }
-    /* ===== HAMBURGER MOBILE ===== */
+
+    /* ===== HAMBURGER ===== */
     .hamburger {
       display: none;
       flex-direction: column;
       justify-content: center;
       gap: 5px;
-      width: 40px;
-      height: 40px;
+      width: 44px;
+      height: 44px;
       background: none;
       border: none;
       cursor: pointer;
       padding: 4px;
-      z-index: 100;
+      z-index: 200;
+      position: relative;
     }
 
     .hamburger span {
@@ -168,6 +162,7 @@
       border-radius: 2px;
       transition: all 0.3s ease;
       transform-origin: center;
+      pointer-events: none;
     }
 
     .hamburger.active span:nth-child(1) {
@@ -180,30 +175,36 @@
       transform: translateY(-7px) rotate(-45deg);
     }
 
+    /* ===== MOBILE MENU ===== */
     @media (max-width: 767px) {
-      .hamburger { display: flex; }
+      .hamburger {
+        display: flex;
+      }
 
+      /* Mobile nav panel — hidden off-screen to the right */
       .nav-links {
-        flex-direction: column !important;
-        position: fixed !important;
-        top: 0 !important;
-        right: -100% !important;
-        width: 75% !important;
-        max-width: 300px !important;
-        height: 100vh !important;
-        background: #fff !important;
-        box-shadow: -4px 0 20px rgba(0,0,0,0.12) !important;
-        padding: 100px 2rem 2rem !important;
-        gap: 0 !important;
-        transition: right 0.3s ease !important;
-        z-index: 90 !important;
-        list-style: none !important;
-        overflow-y: auto !important;
         display: flex !important;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 75%;
+        max-width: 300px;
+        height: 100vh;
+        background: #fff;
+        box-shadow: -4px 0 20px rgba(0,0,0,0.12);
+        padding: 100px 2rem 2rem;
+        gap: 0;
+        transition: right 0.3s ease;
+        z-index: 150;
+        list-style: none;
+        overflow-y: auto;
+        visibility: visible;
+        pointer-events: all;
       }
 
       .nav-links.open {
-        right: 0 !important;
+        right: 0;
       }
 
       .nav-links li {
@@ -218,19 +219,7 @@
         color: var(--foreground);
       }
 
-      .nav-overlay {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.4);
-        z-index: 80;
-      }
-
-      .nav-overlay.open {
-        display: block;
-      }
-
-      /* Hero mobile fix */
+      /* Hero mobile */
       .hero {
         min-height: 100svh;
         align-items: flex-start;
@@ -274,7 +263,18 @@
       }
     }
 
+    /* ===== MOBILE OVERLAY ===== */
+    .nav-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 100;
+    }
 
+    .nav-overlay.open {
+      display: block;
+    }
 
     /* ===== HERO ===== */
     .hero {
@@ -433,7 +433,6 @@
     }
 
     .btn-primary:hover { background: rgba(0,146,70,0.88); }
-
     .btn-primary svg { width: 20px; height: 20px; }
 
     .btn-outline {
@@ -472,9 +471,7 @@
 
     @media (min-width: 768px) { .about-grid { grid-template-columns: 1fr 1fr; } }
 
-    .about-img-wrap {
-      position: relative;
-    }
+    .about-img-wrap { position: relative; }
 
     .about-img-bg {
       position: absolute;
@@ -560,7 +557,6 @@
     }
 
     .products-header .section-title { margin-bottom: 1rem; }
-
     .products-header p { font-size: 1.125rem; color: var(--muted-foreground); }
     .products-header .it { font-size: 0.875rem; font-style: italic; font-weight: 300; color: var(--muted-foreground); margin-top: 0.25rem; }
 
@@ -641,10 +637,9 @@
     .product-item { margin-bottom: 1rem; }
     .product-item-en { font-weight: 500; color: var(--foreground); font-size: 0.9375rem; }
     .product-item-it { font-size: 0.8125rem; font-style: italic; font-weight: 300; color: var(--muted-foreground); }
-
     .product-item + .product-item { padding-top: 1rem; border-top: 1px solid rgba(0,0,0,0.07); }
 
-    /* ===== VISION/MISSION ===== */
+    /* ===== VISION ===== */
     .vision {
       padding: 6rem 1.5rem;
       background: var(--foreground);
@@ -734,7 +729,6 @@
     @media (min-width: 768px) { .why-grid { grid-template-columns: 1fr 1fr; } }
 
     .why-features { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
-
     .why-feature { display: flex; gap: 1rem; align-items: flex-start; }
 
     .why-check {
@@ -799,7 +793,6 @@
     }
 
     .footer-logo span { color: var(--primary); }
-
     .footer-desc { font-size: 0.9375rem; color: rgba(255,255,255,0.6); max-width: 24rem; line-height: 1.7; }
 
     .footer-col h4 {
@@ -851,13 +844,17 @@
       <div class="nav-logo">
         <img src="LOGO.png" alt="EVO Logo" style="height:70px;width:auto;object-fit:contain;" />
       </div>
+
+      <!-- Desktop nav links -->
       <ul class="nav-links" id="navLinks">
         <li><a href="#about">About</a></li>
         <li><a href="#products">Products</a></li>
         <li><a href="#vision">Vision</a></li>
         <li><a href="#why-evo">Why EVO</a></li>
       </ul>
-      <button class="hamburger" id="hamburger" aria-label="Menu">
+
+      <!-- Hamburger button -->
+      <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
         <span></span>
         <span></span>
         <span></span>
@@ -902,7 +899,6 @@
               Explore Products
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
             </a>
-
           </div>
         </div>
       </div>
@@ -950,7 +946,6 @@
           <p class="it">Progettato per l'affidabilità. Costruito per resistere alla pressione.</p>
         </div>
         <div class="products-grid">
-          <!-- Product 1 -->
           <div class="product-card">
             <div class="product-img-wrap">
               <img src="product-float-valve.png" alt="Float Valve Rods" />
@@ -971,7 +966,6 @@
               </div>
             </div>
           </div>
-          <!-- Product 2 -->
           <div class="product-card">
             <div class="product-img-wrap">
               <img src="product-heater-rod.png" alt="Water Heater Rods" />
@@ -1124,7 +1118,7 @@
             </li>
             <li style="display:flex;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.6);font-size:0.875rem;margin-top:0.75rem;">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#009246" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-              <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="caa3a4aca58aafbca5bcaba6bcafb9e4a9a5a7">[email&#160;protected]</a></span>
+              <span>info@evo-italy.com</span>
             </li>
             <li style="margin-top:1rem;border-left:2px solid #009246;padding-left:0.75rem;">
               <p style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:rgba(255,255,255,0.9);">Proudly Made in Italy</p>
@@ -1139,6 +1133,7 @@
       </div>
     </div>
   </footer>
+
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
@@ -1146,21 +1141,28 @@
     const navLinks  = document.getElementById("navLinks");
     const overlay   = document.getElementById("navOverlay");
 
+    function openMenu() {
+      hamburger.classList.add("active");
+      hamburger.setAttribute("aria-expanded", "true");
+      navLinks.classList.add("open");
+      overlay.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+
     function closeMenu() {
       hamburger.classList.remove("active");
+      hamburger.setAttribute("aria-expanded", "false");
       navLinks.classList.remove("open");
       overlay.classList.remove("open");
       document.body.style.overflow = "";
     }
 
-    hamburger.addEventListener("click", function() {
-      const isOpen = navLinks.classList.contains("open");
-      if (isOpen) { closeMenu(); }
-      else {
-        hamburger.classList.add("active");
-        navLinks.classList.add("open");
-        overlay.classList.add("open");
-        document.body.style.overflow = "hidden";
+    hamburger.addEventListener("click", function(e) {
+      e.stopPropagation();
+      if (navLinks.classList.contains("open")) {
+        closeMenu();
+      } else {
+        openMenu();
       }
     });
 
@@ -1171,7 +1173,11 @@
         e.preventDefault();
         closeMenu();
         const target = document.querySelector(this.getAttribute("href"));
-        if (target) { target.scrollIntoView({ behavior: "smooth" }); }
+        if (target) {
+          setTimeout(() => {
+            target.scrollIntoView({ behavior: "smooth" });
+          }, 100);
+        }
       });
     });
   </script>

@@ -172,26 +172,26 @@
       .hamburger { display: flex; }
 
       .nav-links {
+        flex-direction: column !important;
+        position: fixed !important;
+        top: 0 !important;
+        right: -100% !important;
+        width: 75% !important;
+        max-width: 300px !important;
+        height: 100vh !important;
+        background: #fff !important;
+        box-shadow: -4px 0 20px rgba(0,0,0,0.12) !important;
+        padding: 100px 2rem 2rem !important;
+        gap: 0 !important;
+        transition: right 0.3s ease !important;
+        z-index: 90 !important;
+        list-style: none !important;
+        overflow-y: auto !important;
         display: flex !important;
-        flex-direction: column;
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 75%;
-        max-width: 300px;
-        height: 100vh;
-        background: #fff;
-        box-shadow: -4px 0 20px rgba(0,0,0,0.12);
-        padding: 100px 2rem 2rem;
-        gap: 0;
-        transition: right 0.3s ease;
-        z-index: 90;
-        list-style: none;
-        overflow-y: auto;
       }
 
       .nav-links.open {
-        right: 0;
+        right: 0 !important;
       }
 
       .nav-links li {
@@ -216,6 +216,49 @@
 
       .nav-overlay.open {
         display: block;
+      }
+
+      /* Hero mobile fix */
+      .hero {
+        min-height: 100svh;
+        align-items: flex-start;
+        padding-top: 100px;
+      }
+
+      .hero-content {
+        padding: 2rem 1.25rem;
+      }
+
+      .hero-inner {
+        max-width: 100%;
+      }
+
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .hero-desc {
+        padding-left: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .hero-desc-en {
+        font-size: 1rem;
+      }
+
+      .hero-feature-en {
+        font-size: 0.9rem;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .btn-primary {
+        width: 100%;
+        justify-content: center;
+        font-size: 1rem;
+        height: 3rem;
       }
     }
 
@@ -847,7 +890,7 @@
               Explore Products
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
             </a>
-            <a href="#contact" class="btn-outline">Contact Us</a>
+
           </div>
         </div>
       </div>
@@ -1069,7 +1112,7 @@
             </li>
             <li style="display:flex;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.6);font-size:0.875rem;margin-top:0.75rem;">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#009246" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-              <span>info@evovalves.com</span>
+              <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="caa3a4aca58aafbca5bcaba6bcafb9e4a9a5a7">[email&#160;protected]</a></span>
             </li>
             <li style="margin-top:1rem;border-left:2px solid #009246;padding-left:0.75rem;">
               <p style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:rgba(255,255,255,0.9);">Proudly Made in Italy</p>
@@ -1087,7 +1130,6 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Hamburger menu
     const hamburger = document.getElementById("hamburger");
     const navLinks  = document.getElementById("navLinks");
     const overlay   = document.getElementById("navOverlay");
@@ -1112,7 +1154,6 @@
 
     overlay.addEventListener("click", closeMenu);
 
-    // Smooth scroll + close menu on link click
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener("click", function(e) {
         e.preventDefault();
